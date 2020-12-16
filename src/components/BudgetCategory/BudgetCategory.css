@@ -1,0 +1,14 @@
+.category {
+   height: 100%;
+   width: 100%;
+   display: flex;
+ }
+ .category-name {
+   width: 50%;
+ }
+ .spent-time {
+   width: 25%;
+ }
+ .remaining-time {
+   width: 25%;
+ }
