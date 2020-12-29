@@ -5,6 +5,11 @@ import "./BudgetPage.css";
 import AddTimeButton from "../AddTimeButton/AddTimeButton";
 
 class BudgetPage extends Component {
+   constructor(props) {
+      super(props)
+  
+      this.addTimeHandler = this.addTimeHandler.bind(this)
+    }
    
    state = {
       budgetCategories: [],
@@ -21,11 +26,17 @@ class BudgetPage extends Component {
       }
    }
 
+   addTimeHandler() {
+      let budgetCategoriesCopy = [...this.state.budgetCategories]
+      budgetCategoriesCopy[0].time_spent+=1
+      this.setState({budgetCategories: budgetCategoriesCopy});
+   }
+
    render() {
       return (
          <div className="budgetPage">
             <Sections budgets={this.state.budgetCategories}></Sections>
-				<AddTimeButton></AddTimeButton>
+				<AddTimeButton addTimeHandler={this.addTimeHandler}></AddTimeButton>
          </div>
       );
    }

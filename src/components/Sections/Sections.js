@@ -9,7 +9,6 @@ function Section(props) {
          <span className="remaining-time">{budget.time_budgeted}</span>
       </div>
    ));
-   console.log(budgets);
    return <div className="section">{listBudgetCategories}</div>;
 }
 
