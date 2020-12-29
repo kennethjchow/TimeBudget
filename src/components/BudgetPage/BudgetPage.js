@@ -1,15 +1,11 @@
 import { Component } from "react";
-import BudgetCategories from "../../data/data";
-import Section from "../Section/Section";
+import Sections from "../Sections/Sections";
 import axios from "axios";
 import "./BudgetPage.css";
 import AddTimeButton from "../AddTimeButton/AddTimeButton";
 
 class BudgetPage extends Component {
-   constructor(props) {
-      super(props);
-   }
-
+   
    state = {
       budgetCategories: [],
       loaded: false,
@@ -28,7 +24,7 @@ class BudgetPage extends Component {
    render() {
       return (
          <div className="budgetPage">
-            <Section budgets={this.state.budgetCategories}></Section>
+            <Sections budgets={this.state.budgetCategories}></Sections>
 				<AddTimeButton></AddTimeButton>
          </div>
       );

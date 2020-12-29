@@ -1,4 +1,5 @@
 import "./AddTimeButton.css";
+import {AiOutlinePlusCircle} from'react-icons/ai'
 
 function AddTimeButton(props) {
 	const addTime = (event) => {
@@ -6,7 +7,7 @@ function AddTimeButton(props) {
 	}
    return (
       <div>
-         <button onClick={addTime}>Add time</button>
+         <div onClick={addTime}><AiOutlinePlusCircle/></div>
       </div>
    );
 }
