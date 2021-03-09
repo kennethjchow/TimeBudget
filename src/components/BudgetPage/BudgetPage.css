@@ -1,6 +1,7 @@
 .header {
    border-bottom: .1rem solid #b6bec2;
    background-color: #f5f7f8;
+   padding: 1.2rem 0;
 }
 
 .headerDate {
@@ -25,4 +26,14 @@
    color: #49525786;
    font-size: 1rem;
    font-weight: 600;
+}
+
+.budget-page {
+   padding: 0 2.4rem;
+   background-color: #f5f7f8;
+   
+}
+
+.budgets {
+   margin-top:1.2rem
 }

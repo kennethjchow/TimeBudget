@@ -34,22 +34,22 @@ class BudgetPage extends Component {
       this.setState({ budgetCategories: budgetCategoriesCopy });
    }
    render() {
-      const startOfWeek = moment().startOf('isoweek').format('MMMM Do')
-      const endOfWeek = moment().endOf("isoweek").format("MMMM Do")
-      const year = moment().startOf('isoweek').format('YYYY')
+      const startOfWeek = moment().startOf("isoweek").format("MMMM Do");
+      const endOfWeek = moment().endOf("isoweek").format("MMMM Do");
+      const year = moment().startOf("isoweek").format("YYYY");
       return (
-         <div className="budgetPage">
+         <div className="budget-page">
             <div className="header">
-               <h5 className="headerYear">
-                  {year}
-               </h5>
+               <h5 className="headerYear">{year}</h5>
                <h1 className="headerDate">
                   {startOfWeek} - {endOfWeek}
                </h1>
                <div>{this.state.hoursLeft} hours left to plan</div>
             </div>
-            <Sections budgets={this.state.budgetCategories}></Sections>
-            <AddTimeButton addTimeHandler={this.addTimeHandler}></AddTimeButton>
+            <div className="budgets">
+               <Sections budgets={this.state.budgetCategories}></Sections>
+            </div>
+            {/* <AddTimeButton addTimeHandler={this.addTimeHandler}></AddTimeButton> */}
          </div>
       );
    }
