@@ -1,7 +1,7 @@
 .budget-group {
    margin-bottom: 2.4rem;
    border-radius: 0.8rem;
-   box-shadow: 1px 1px 3px 1px rgb(31 36 38 / 10%);
+   box-shadow: 0px 1px 3px 0px rgb(31 36 38 / 10%);
    background-color: #fff;
 }
 
@@ -12,11 +12,38 @@
    flex: 0 1 50%;
 }
 
+.budget-item-input-group {
+   padding-right: 2.4rem;
+}
+
+.budget-item-form-control {
+   border: 0 !important;
+}
+
+
 .budget-group-header {
    position: relative;
    padding: 0.8rem 2.4rem 0.8rem;
    display: flex;
    align-items: center;
+}
+
+.budget-item-row {
+   position: relative;
+    background-color: #fff;
+    padding: 0 2.4rem;
+}
+
+.budget-group-row-content {
+   position: relative;
+   background-color: #fff;
+   padding: 1.2rem 0;
+   display: flex;
+}
+
+.budget-item-progress {
+   width: 100%;
+   height: 1px !important;
 }
 
 .budget-group-header-column {

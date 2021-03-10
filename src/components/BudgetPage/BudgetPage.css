@@ -31,7 +31,7 @@
 .budget-page {
    padding: 0 2.4rem;
    background-color: #f5f7f8;
-   
+   height: inherit;
 }
 
 .budgets {
