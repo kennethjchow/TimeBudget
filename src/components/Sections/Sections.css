@@ -5,6 +5,13 @@
    background-color: #fff;
 }
 
+.budget-item-header-name {
+   max-width: 50%;
+   white-space: nowrap;
+   display: flex;
+   flex: 0 1 50%;
+}
+
 .budget-group-header-name {
    max-width: 50%;
    white-space: nowrap;
@@ -16,9 +23,14 @@
    padding-right: 2.4rem;
 }
 
-.budget-item-form-control {
+.budget-item-form-control-disabled{
    border: 0 !important;
+   background-color: #fff !important
 }
+
+.budget-item-form-control-enabled{
+}
+
 
 
 .budget-group-header {
@@ -34,7 +46,7 @@
     padding: 0 2.4rem;
 }
 
-.budget-group-row-content {
+.budget-item-row-content {
    position: relative;
    background-color: #fff;
    padding: 1.2rem 0;
@@ -46,6 +58,14 @@
    height: 1px !important;
 }
 
+.budget-item-header-column {
+   text-align: right;
+   color: #8e999e;
+   display: flex;
+   flex: 0 1 25%;
+   max-width: 50%;
+}
+
 .budget-group-header-column {
    text-align: right;
    color: #8e999e;
@@ -53,6 +73,7 @@
    flex: 0 1 25%;
    max-width: 50%;
 }
+
 .category-name {
 }
 .spent-time {
