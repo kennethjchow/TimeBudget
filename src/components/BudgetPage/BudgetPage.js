@@ -18,7 +18,7 @@ class BudgetPage extends Component {
       hoursLeft: 172,
    };
 
-   componentDidMount() {
+   componentWillMount() {
       if (!this.state.loaded && this.state.budgetCategories.length === 0) {
          axios.get(`http://localhost:8081/listBudgetData`).then((res) => {
             console.log(res.data);

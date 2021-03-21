@@ -32,7 +32,18 @@
 }
 
 .bottom-row {
-   padding: 1.2rem 2.4rem;
+   padding: 0.6rem 2.4rem;
+}
+
+.edit-icon-button {
+   cursor: pointer;
+   font-size: 31px !important;
+}
+
+.edit-buttons-container {
+   width: 100%;
+   text-align: right;
+   padding-bottom: 0.6rem;
 }
 
 .budget-group-header {
