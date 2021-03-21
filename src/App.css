@@ -1,3 +1,4 @@
 .App {
    height: inherit;
+   display: flex;
 }
