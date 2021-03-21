@@ -58,8 +58,13 @@ class Sections extends Component {
             </div>
             <ListItem items={budget.items} isEditMode={this.state.isEditMode}></ListItem>
             {this.state.isEditMode && (
-               <div onClick={this.addItem.bind(this, index, budget.items)}>
-                  Add item
+               <div className="bottom-row">
+                  <Button onClick={this.addItem.bind(this, index, budget.items)} variant="link">Add Item</Button>
+               </div>
+            )}
+            {!this.state.isEditMode && (
+               <div className="bottom-row">
+                  <br/>
                </div>
             )}
          </div>
