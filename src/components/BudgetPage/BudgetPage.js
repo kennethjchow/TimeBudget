@@ -4,6 +4,7 @@ import axios from "axios";
 import moment from "moment";
 import "./BudgetPage.css";
 import AddTimeButton from "../AddTimeButton/AddTimeButton";
+import API from "../../utils/api";
 
 class BudgetPage extends Component {
    constructor(props) {
@@ -20,16 +21,15 @@ class BudgetPage extends Component {
 
    componentWillMount() {
       if (!this.state.loaded && this.state.budgetCategories.length === 0) {
-         axios.get(`http://localhost:8081/listBudgetData`).then((res) => {
-            console.log(res.data);
-            console.log("data is here");
+         let api_util = new API()
+         api_util.getBudgetCategories().then((res)=>{
+            console.log('hi')
             this.setState({ budgetCategories: res.data, loaded: true });
-         });
+         })
       }
    }
 
    calcTimeRemaining() {
-      console.log('I am here')
       const budgets = this.state.budgetCategories;
       let sum = 0;
       budgets.forEach(function (budget, index) {

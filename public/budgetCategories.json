@@ -1,0 +1,47 @@
+[
+   {
+      "group_name":"Health",
+      "items": [
+         {
+            "item_name": "Sleep",
+            "time_budgeted": 56,
+            "time_spent": 3
+         },
+         {
+            "item_name": "Working out",
+            "time_budgeted": 2,
+            "time_spent": 0 
+         }
+      ]
+   },
+   {
+      "group_name":"Productivity",
+      "items": [
+         {
+            "item_name": "Side Project",
+            "time_budgeted": 7,
+            "time_spent": 1
+         },
+         {
+            "item_name": "Reading",
+            "time_budgeted": 3.5,
+            "time_spent": 0 
+         }
+      ]
+   },
+   {
+      "group_name":"Social",
+      "items": [
+         {
+            "item_name": "Eating with friends",
+            "time_budgeted": 3,
+            "time_spent": 0 
+         },
+         {
+            "item_name": "Playing games with friends",
+            "time_budgeted": 7,
+            "time_spent": 0 
+         }
+      ]
+   }
+]
