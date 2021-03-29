@@ -38,10 +38,10 @@ function SideNavbar(props) {
          <div className={classes.toolbar} />
          <Divider />
          <List>
-            <ListItem button key='Budget'>
+            <ListItem href="/" button key='Budget'>
                <ListItemText primary='Budget' />
             </ListItem>
-            <ListItem button key='Calendar'>
+            <ListItem href="calendar" button key='Calendar'>
                <ListItemText primary='Calendar' />
             </ListItem>
          </List>
