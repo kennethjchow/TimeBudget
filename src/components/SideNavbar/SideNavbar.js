@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import MailIcon from "@material-ui/icons/Mail";
 import { makeStyles } from "@material-ui/core/styles";
+import { NavLink, useLocation, withRouter } from "react-router-dom";
+import Routes from "../../utils/Routes";
 
 const drawerWidth = 240;
 
@@ -33,17 +32,29 @@ const useStyles = makeStyles((theme) => ({
 function SideNavbar(props) {
    const classes = useStyles();
 
+   const activeRoute = (routeName) => {
+      return props.location.pathname === routeName ? true : false;
+   };
+
    const drawer = (
       <div>
          <div className={classes.toolbar} />
          <Divider />
          <List>
-            <ListItem href="/" button key='Budget'>
-               <ListItemText primary='Budget' />
-            </ListItem>
-            <ListItem href="calendar" button key='Calendar'>
-               <ListItemText primary='Calendar' />
-            </ListItem>
+            <NavLink to={"/"} key="Budget">
+               <ListItem selected={activeRoute("/")}>
+                  <ListItemText primary="Budget" />
+               </ListItem>
+            </NavLink>
+            <NavLink to={"/calendar"} key="Calendar">
+               <ListItem
+                  selected={activeRoute("/calendar")}
+                  button
+                  key="Calendar"
+               >
+                  <ListItemText primary="Calendar" />
+               </ListItem>
+            </NavLink>
          </List>
          <Divider />
       </div>
@@ -74,4 +85,4 @@ SideNavbar.propTypes = {
    window: PropTypes.func,
 };
 
-export default SideNavbar;
+export default withRouter(SideNavbar);
