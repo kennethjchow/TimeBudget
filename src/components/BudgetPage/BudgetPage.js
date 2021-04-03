@@ -23,7 +23,6 @@ class BudgetPage extends Component {
       if (!this.state.loaded && this.state.budgetCategories.length === 0) {
          let api_util = new API()
          api_util.getBudgetCategories().then((res)=>{
-            console.log('hi')
             this.setState({ budgetCategories: res.data, loaded: true });
          })
       }

@@ -1,46 +1,55 @@
 [
    {
-      "group_name":"Health",
+      "group_name": "Health",
+      "group_id": 1,
       "items": [
          {
+            "item_id": 1,
             "item_name": "Sleep",
             "time_budgeted": 56,
             "time_spent": 3
          },
          {
+            "item_id": 2,
             "item_name": "Working out",
             "time_budgeted": 2,
-            "time_spent": 0 
+            "time_spent": 0
          }
       ]
    },
    {
-      "group_name":"Productivity",
+      "group_name": "Productivity",
+      "group_id": 2,
       "items": [
          {
+            "item_id": 3,
             "item_name": "Side Project",
             "time_budgeted": 7,
             "time_spent": 1
          },
          {
+            "item_id": 4,
             "item_name": "Reading",
             "time_budgeted": 3.5,
-            "time_spent": 0 
+            "time_spent": 0
          }
       ]
    },
    {
-      "group_name":"Social",
+      "group_name": "Social",
+      "group_id": 3,
       "items": [
          {
+            "item_id": 5,
             "item_name": "Eating with friends",
             "time_budgeted": 3,
-            "time_spent": 0 
+            "time_spent": 0
          },
          {
+            "item_id": 6,
             "item_name": "Playing games with friends",
             "time_budgeted": 7,
-            "time_spent": 0 
+            "time_spent": 0
          }
       ]
    }
