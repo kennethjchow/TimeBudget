@@ -5,17 +5,16 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import EditIcon from "@material-ui/icons/Edit";
 import _ from "lodash";
-import React from "react";
-import { Component } from "react";
+import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { Link } from "react-router-dom";
 
-class Sections extends Component {
-   constructor(props) {
-      super(props);
-      this.state = { budgets: props.budgets, isEditMode: false };
-   }
+function Sections(props) {
+   // constructor(props) {
+   //    this.state = { budgets: props.budgets, isEditMode: false };
+   // }
+   const [isEditMode, setIsEditMode] = useState(false);
 
    // componentWillReceiveProps(newProps) {
    //    console.log('hi from receive props')
@@ -24,47 +23,32 @@ class Sections extends Component {
    //    }
    // }
 
-   addItem = (index, budgetItems) => {
-      budgetItems.push({
-         item_name: "TESTING",
-         time_budgeted: 56,
-         time_spent: 3,
-      });
-      const budgets = this.state.budgets;
-      budgets[index]["items"] = budgetItems;
-      this.setState({ budgets: budgets });
+   const addItem = (index, budgetItems) => {
+      props.onAddItem(index, budgetItems)
    };
 
-   deleteItem = (item, group_id) => {
-      let budgets = [...this.state.budgets];
-      let items = budgets.find((x) => x.group_id === group_id).items;
-      _.remove(items, { item_id: item.item_id });
-      this.setState({ budgets: budgets });
+   const deleteGroup = (index, budgetItems) => {
+      props.onDeleteGroup(index, budgetItems)
    };
 
-   deleteGroup = (group_id) => {
-      let budgets = [...this.state.budgets];
-      _.remove(budgets, { group_id: group_id });
-      this.setState({ budgets: budgets });
+   const deleteItem = (index, budgetItems) => {
+      props.onDeleteItem(index, budgetItems)
    };
 
-   onGroupRename = (index, budget) => {
-      console.log(this);
-      console.log(budget.group_name);
+  
+
+   const switchToEditMode = () => {
+      setIsEditMode(true);
    };
 
-   switchToEditMode = () => {
-      this.setState({ isEditMode: true });
+   const save = () => {
+      setIsEditMode(false);
    };
 
-   save = () => {
-      this.setState({ isEditMode: false });
-   };
-
-   renderEditButton() {
-      if (this.state.isEditMode) {
+   const renderEditButton = () => {
+      if (isEditMode) {
          return (
-            <Button variant="primary" size="sm" onClick={this.save}>
+            <Button variant="primary" size="sm" onClick={save}>
                Save
             </Button>
          );
@@ -73,80 +57,73 @@ class Sections extends Component {
          <EditIcon
             className="edit-icon-button"
             color="primary"
-            onClick={this.switchToEditMode}
+            onClick={switchToEditMode}
          />
       );
-   }
+   };
 
-   render() {
-      const listBudgetGroups = this.state.budgets.map((budget, index) => (
-         <Container className="budget-group" fluid key={budget.group_id}>
-            <Row className="budget-group-header" key={`header_${budget.group_id}`}>
-               <Col xs={5}>
-                  <InputGroup className="budget-item-input-group">
-                     <FormControl
-                        disabled={!this.state.isEditMode}
-                        className={
-                           this.state.isEditMode
-                              ? "budget-item-form-control-enabled"
-                              : "budget-item-form-control-disabled"
-                        }
-                        placeholder="Group Name"
-                        aria-label="Small"
-                        aria-describedby="inputGroup-sizing-sm"
-                        defaultValue={budget.group_name}
-                     />
-                  </InputGroup>
-               </Col>
-               <Col className="budget-group-header-column">Budgeted</Col>
-               <Col className="budget-group-header-column has-delete">
-                  <div className="spent-header">Spent</div>
-                  {this.state.isEditMode && (
-                     <Link
-                     
-                        onClick={this.deleteGroup.bind(this, budget.group_id)}
-                     >
-                        delete group
-                     </Link>
-                  )}
-               </Col>
-            </Row>
-            <ListItem
-               items={budget.items}
-               group_id={budget.group_id}
-               isEditMode={this.state.isEditMode}
-               deleteItem={this.deleteItem}
-            ></ListItem>
-            <Row key={`bottom_${budget.group_id}`}>
-               {this.state.isEditMode && (
-                  <div className="bottom-row">
-                     <Button
-                        onClick={this.addItem.bind(this, index, budget.items)}
-                        variant="link"
-                     >
-                        Add Item
-                     </Button>
-                  </div>
+   const listBudgetGroups = props.budgets.map((budget, index) => (
+      <Container className="budget-group" fluid key={budget.group_id}>
+         <Row className="budget-group-header" key={`header_${budget.group_id}`}>
+            <Col xs={5}>
+               <InputGroup className="budget-item-input-group">
+                  <FormControl
+                     disabled={!isEditMode}
+                     className={
+                        isEditMode
+                           ? "budget-item-form-control-enabled"
+                           : "budget-item-form-control-disabled"
+                     }
+                     placeholder="Group Name"
+                     aria-label="Small"
+                     aria-describedby="inputGroup-sizing-sm"
+                     defaultValue={budget.group_name}
+                  />
+               </InputGroup>
+            </Col>
+            <Col className="budget-group-header-column">Budgeted</Col>
+            <Col className="budget-group-header-column has-delete">
+               <div className="spent-header">Spent</div>
+               {isEditMode && (
+                  <Link onClick={() => deleteGroup(budget.group_id)}>
+                     delete group
+                  </Link>
                )}
-               {!this.state.isEditMode && (
-                  <div className="bottom-row">
-                     <Button variant="link">
-                        <br />
-                     </Button>
-                  </div>
-               )}
-            </Row>
-         </Container>
-      ));
-      return (
-         <div>
-            <div className="edit-buttons-container">
-               {this.renderEditButton()}
-            </div>
-            <div>{listBudgetGroups}</div>
-         </div>
-      );
-   }
+            </Col>
+         </Row>
+         <ListItem
+            items={budget.items}
+            group_id={budget.group_id}
+            isEditMode={isEditMode}
+            deleteItem={deleteItem}
+         ></ListItem>
+         <Row key={`bottom_${budget.group_id}`}>
+            {isEditMode && (
+               <div className="bottom-row">
+                  <Button
+                     onClick={() => addItem(index, budget.items)}
+                     variant="link"
+                  >
+                     Add Item
+                  </Button>
+               </div>
+            )}
+            {!isEditMode && (
+               <div className="bottom-row">
+                  <Button variant="link">
+                     <br />
+                  </Button>
+               </div>
+            )}
+         </Row>
+      </Container>
+   ));
+   return (
+      <div>
+         <div className="edit-buttons-container">{renderEditButton()}</div>
+         <div>{listBudgetGroups}</div>
+      </div>
+   );
 }
 
 function ListItem(props) {
