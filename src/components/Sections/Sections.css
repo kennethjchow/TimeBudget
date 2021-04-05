@@ -76,10 +76,11 @@
    display: flex;
 }
 
-.delete-button-row {
+.delete-row-button {
    margin-top: 0.25rem;
    margin-bottom: 0.25rem;
    font-size: 23px !important;
+   cursor: pointer;
 }
 
 .spent-header{

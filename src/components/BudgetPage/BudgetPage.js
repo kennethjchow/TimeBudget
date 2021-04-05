@@ -14,14 +14,14 @@ function BudgetPage(props) {
    useEffect(() => {
       let api_util = new API();
       api_util.getBudgetCategories().then((res) => {
-         console.log(res.data);
          setBudgets(res.data);
+         setHoursLeft(calcTimeRemaining(res.data));
+
          setIsLoading(false);
       });
    }, []);
 
    const addItem = (index, budgetItems) => {
-      console.log("hello from add item");
       budgetItems.push({
          item_id: 1000,
          item_name: "TESTING",
@@ -48,20 +48,19 @@ function BudgetPage(props) {
    };
 
    const onGroupRename = (index, budget) => {
-      console.log(this);
       console.log(budget.group_name);
    };
 
-   // const calcTimeRemaining = () => {
-   //    const budgets = ;
-   //    let sum = 0;
-   //    budgets.forEach(function (budget, index) {
-   //       budget.items.forEach(function (item, index) {
-   //          sum += item.time_budgeted;
-   //       });
-   //    });
-   //    return 172 - sum;
-   // };
+   const calcTimeRemaining = (budgets) => {
+      let sum = 0;
+      budgets.forEach(function (budget, index) {
+         budget.items.forEach(function (item, index) {
+            sum += item.time_budgeted;
+         });
+      });
+      console.log(sum);
+      return 172 - sum;
+   };
 
    // const timeLeft = calcTimeRemaining(); // TODO: Fix this so that it's bound to div
 
@@ -70,21 +69,25 @@ function BudgetPage(props) {
    const year = moment().startOf("isoweek").format("YYYY");
    return (
       <div className="budget-page">
-         <div className="header">
-            <h5 className="headerYear">{year}</h5>
-            <h1 className="headerDate">
-               {startOfWeek} - {endOfWeek}
-            </h1>
-            {/* <div>{timeLeft} hours left to plan</div> */}
-         </div>
-         <div className="budgets">
-            <Sections
-               budgets={budgets}
-               onAddItem={addItem}
-               onDeleteGroup={deleteGroup}
-               onDeleteItem={deleteItem}
-            ></Sections>
-         </div>
+         {!isLoading && (
+            <div>
+               <div className="header">
+                  <h5 className="headerYear">{year}</h5>
+                  <h1 className="headerDate">
+                     {startOfWeek} - {endOfWeek}
+                  </h1>
+                  <div>{hoursLeft} hours left to plan</div>
+               </div>
+               <div className="budgets">
+                  <Sections
+                     budgets={budgets}
+                     onAddItem={addItem}
+                     onDeleteGroup={deleteGroup}
+                     onDeleteItem={deleteItem}
+                  ></Sections>
+               </div>
+            </div>
+         )}
       </div>
    );
 }

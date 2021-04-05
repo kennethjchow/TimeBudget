@@ -1,20 +1,18 @@
 import "./App.css";
-import BudgetPage from "./components/BudgetPage/BudgetPage";
-import SideNavbar from "./components/SideNavbar/SideNavbar";
-import CalendarPage from "./components/CalendarPage/CalendarPage"
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import LoginPage from "./components/LoginPage/LoginPage";
+import Main from "./components/Main/Main";
+import SignupPage from "./components/SignupPage/SignupPage";
 
 function App() {
    return (
       <Router>
          <div className="App">
-            <SideNavbar></SideNavbar>
             <Switch>
-               <Route path="/" exact component={BudgetPage} />
-               <Route path="/budget" component={BudgetPage} />
-               <Route path="/calendar" component={CalendarPage} />
+               <Route path="/login" component={LoginPage} />
+               <Route path="/signup" component={SignupPage} />
+               <Route component={Main} />
             </Switch>
          </div>
       </Router>

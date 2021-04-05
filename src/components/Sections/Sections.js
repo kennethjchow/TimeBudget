@@ -11,31 +11,19 @@ import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { Link } from "react-router-dom";
 
 function Sections(props) {
-   // constructor(props) {
-   //    this.state = { budgets: props.budgets, isEditMode: false };
-   // }
    const [isEditMode, setIsEditMode] = useState(false);
 
-   // componentWillReceiveProps(newProps) {
-   //    console.log('hi from receive props')
-   //    if (this.state.budgets !== newProps.budgets) {
-   //       this.setState({ budgets: newProps.budgets });
-   //    }
-   // }
-
    const addItem = (index, budgetItems) => {
-      props.onAddItem(index, budgetItems)
+      props.onAddItem(index, budgetItems);
    };
 
    const deleteGroup = (index, budgetItems) => {
-      props.onDeleteGroup(index, budgetItems)
+      props.onDeleteGroup(index, budgetItems);
    };
 
    const deleteItem = (index, budgetItems) => {
-      props.onDeleteItem(index, budgetItems)
+      props.onDeleteItem(index, budgetItems);
    };
-
-  
 
    const switchToEditMode = () => {
       setIsEditMode(true);
@@ -186,7 +174,7 @@ function ListItem(props) {
             </InputGroup>
             {isEditMode && (
                <DeleteOutlineIcon
-                  className="delete-button-row"
+                  className="delete-row-button"
                   color="primary"
                   onClick={() => props.deleteItem(item, group_id)}
                ></DeleteOutlineIcon>

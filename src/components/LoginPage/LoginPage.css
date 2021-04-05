@@ -1,0 +1,15 @@
+@media all and (min-width: 480px) {
+   .Login {
+     padding: 60px 0;
+     width: 100%
+   }
+ 
+   .Login form {
+     margin: 0 auto;
+     max-width: 320px;
+   }
+   .register-container {
+     display: flex;
+     margin-top: 1.2rem;
+   }
+ }
