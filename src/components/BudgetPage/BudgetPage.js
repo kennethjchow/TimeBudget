@@ -10,6 +10,7 @@ function BudgetPage(props) {
    const [budgets, setBudgets] = useState([]);
    const [isLoading, setIsLoading] = useState(true);
    const [hoursLeft, setHoursLeft] = useState(172);
+   const [isOpenTransaction, setIsOpenTransaction] = useState(false);
 
    useEffect(() => {
       let api_util = new API();

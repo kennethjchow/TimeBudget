@@ -3,3 +3,19 @@
    height: inherit;
    padding: 2.4rem;
 }
+
+.transaction-form {
+   width:100%
+}
+
+.formControlSelect {
+   min-width: 120px !important
+}
+
+.modal-row {
+   width: 100%
+}
+
+.modal-date-picker {
+   margin-right: 16px !important;
+}

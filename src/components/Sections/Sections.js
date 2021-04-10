@@ -6,16 +6,19 @@ import Button from "react-bootstrap/Button";
 import EditIcon from "@material-ui/icons/Edit";
 import _ from "lodash";
 import React, { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Modal, Row } from "react-bootstrap";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { Link } from "react-router-dom";
 
 function Sections(props) {
    const [isEditMode, setIsEditMode] = useState(false);
+   const [isOpenTransaction, setIsOpenTransaction] = useState(false);
 
    const addItem = (index, budgetItems) => {
       props.onAddItem(index, budgetItems);
    };
+   const handleClose = () => setIsOpenTransaction(false);
+   const handleShow = () => setIsOpenTransaction(true);
 
    const deleteGroup = (index, budgetItems) => {
       props.onDeleteGroup(index, budgetItems);
@@ -108,9 +111,31 @@ function Sections(props) {
    ));
    return (
       <div>
-         <div className="edit-buttons-container">{renderEditButton()}</div>
+         <div>
+            <div className="edit-buttons-container">{renderEditButton()}</div>
+         </div>
+
          <div>{listBudgetGroups}</div>
       </div>
+   );
+}
+
+function AddTransactionModal(props) {
+   return (
+      <Modal show={props.show} onHide={props.handleClose}>
+         <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+         </Modal.Header>
+         <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+         <Modal.Footer>
+            <Button variant="secondary" onClick={props.handleClose}>
+               Close
+            </Button>
+            <Button variant="primary" onClick={props.handleClose}>
+               Save Changes
+            </Button>
+         </Modal.Footer>
+      </Modal>
    );
 }
 
