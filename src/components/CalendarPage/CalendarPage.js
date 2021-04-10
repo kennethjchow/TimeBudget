@@ -54,7 +54,7 @@ function DateDialog(props) {
 
    useEffect(() => {
       setStartDate(props.startDate);
-      setEndDate(props.startDate);
+      setEndDate(props.endDate);
    });
 
    const handleClose = () => {
@@ -67,6 +67,9 @@ function DateDialog(props) {
    const handleSelectChange = (e) => {
       console.log(e);
    };
+   const handleGroupChange = (e) => {
+      console.log(e)
+   }
 
    return (
       <Modal show={props.showModal} onHide={handleClose}>
@@ -95,6 +98,24 @@ function DateDialog(props) {
                         shrink: true,
                      }}
                   />
+               </div>
+               <div className="modal-row">
+               <FormControl className="formControlSelect" margin="normal">
+                     <InputLabel id="demo-simple-select-label">
+                        Category
+                     </InputLabel>
+                     <Select
+                        labelId="demo-simple-select-label"
+                        id="group-select"
+                        // value={age}
+                        onChange={handleGroupChange}
+                     >
+                        {/* TODO: switch this to actual data later */}
+                        <MenuItem value={10}>Productivity</MenuItem>
+                        <MenuItem value={20}>Health</MenuItem>
+                        <MenuItem value={30}>Social</MenuItem>
+                     </Select>
+                  </FormControl>
                </div>
                <div className="modal-row">
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -170,6 +191,7 @@ function DateDialog(props) {
                      </Select>
                   </FormControl>
                </div>
+               <Button onClick={handleClose}>Save</Button>
             </form>
          </Modal.Footer>
       </Modal>
