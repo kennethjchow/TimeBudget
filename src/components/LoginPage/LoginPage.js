@@ -5,7 +5,6 @@ import "./LoginPage.css";
 import { Link } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import { useAppContext } from "../../libs/contextLib";
-import { useHistory } from "react-router-dom";
 import { useFormFields } from "../../libs/hooksLib";
 
 export default function LoginPage() {
@@ -25,13 +24,10 @@ export default function LoginPage() {
     try {
       await Auth.signIn(fields.email, fields.password);
       userHasAuthenticated(true);
-      history.push("/");
     } catch (e) {
       alert(e.message);
     }
   }
-
-  const history = useHistory();
 
   return (
     <div className="Login">

@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import BudgetPage from "../BudgetPage/BudgetPage";
 import CalendarPage from "../CalendarPage/CalendarPage";
 import SideNavbar from "../SideNavbar/SideNavbar";
+import AuthenticatedRoute from "../AuthenticatedRoute";
+
 
 function Main() {
    return (
@@ -11,10 +13,11 @@ function Main() {
          <div className="Main">
             <SideNavbar></SideNavbar>
 
-            <Route path="/" exact component={BudgetPage} />
-            <Route path="/budget" component={BudgetPage} />
-            <Route path="/calendar" component={CalendarPage} />
+            <AuthenticatedRoute path="/" exact component={BudgetPage} />
+            <AuthenticatedRoute path="/budget" component={BudgetPage} />
+            <AuthenticatedRoute path="/calendar" component={CalendarPage} />
          </div>
+
       </Router>
    );
 }

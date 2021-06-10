@@ -7,6 +7,9 @@ import SignupPage from "./components/SignupPage/SignupPage";
 import React, { useState, useEffect } from "react";
 import { AppContext } from "./libs/contextLib";
 import { Auth } from "aws-amplify";
+import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
+import AuthenticatedRoute from "./components/AuthenticatedRoute";
+import Button from "react-bootstrap/Button";
 
 function App() {
    const [isAuthenticated, userHasAuthenticated] = useState(false);
@@ -27,18 +30,33 @@ function App() {
 
       setIsAuthenticating(false);
    }
+
+   async function handleLogout() {
+      await Auth.signOut();
+
+      userHasAuthenticated(false);
+   }
    return (
       !isAuthenticating && (
          <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
             <Router>
                <div className="App">
                   <Switch>
-                     <Route path="/login" component={LoginPage} />
-                     <Route path="/signup" component={SignupPage} />
-                     <Route component={Main} />
+                     <UnauthenticatedRoute
+                        path="/login"
+                        component={LoginPage}
+                     />
+                     <UnauthenticatedRoute
+                        path="/signup"
+                        component={SignupPage}
+                     />
+                     <AuthenticatedRoute component={Main} />
                   </Switch>
+                  <Button onClick={handleLogout}>Logout</Button>
                </div>
+               
             </Router>
+            
          </AppContext.Provider>
       )
    );
